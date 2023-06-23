@@ -23,6 +23,7 @@
 		9E9C45522A44837A002B8B92 /* DescriptionInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E9C45512A44837A002B8B92 /* DescriptionInteractor.swift */; };
 		9E9C45542A44838C002B8B92 /* DescriptionConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E9C45532A44838C002B8B92 /* DescriptionConfigurator.swift */; };
 		9E9C45572A4486FF002B8B92 /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = 9E9C45562A4486FF002B8B92 /* SnapKit */; };
+		9E9C45FB2A4600CA002B8B92 /* Network.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E9C45FA2A4600CA002B8B92 /* Network.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -43,6 +44,7 @@
 		9E9C454F2A448365002B8B92 /* DescriptionPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DescriptionPresenter.swift; sourceTree = "<group>"; };
 		9E9C45512A44837A002B8B92 /* DescriptionInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DescriptionInteractor.swift; sourceTree = "<group>"; };
 		9E9C45532A44838C002B8B92 /* DescriptionConfigurator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DescriptionConfigurator.swift; sourceTree = "<group>"; };
+		9E9C45FA2A4600CA002B8B92 /* Network.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Network.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -109,6 +111,7 @@
 			isa = PBXGroup;
 			children = (
 				9E9C451E2A445FFC002B8B92 /* Entities.swift */,
+				9E9C45FA2A4600CA002B8B92 /* Network.swift */,
 			);
 			path = Entities;
 			sourceTree = "<group>";
@@ -213,6 +216,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9E9C45FB2A4600CA002B8B92 /* Network.swift in Sources */,
 				9E9C45522A44837A002B8B92 /* DescriptionInteractor.swift in Sources */,
 				9E9C45432A4482EC002B8B92 /* MainPresenter.swift in Sources */,
 				9E9C45502A448365002B8B92 /* DescriptionPresenter.swift in Sources */,

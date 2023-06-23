@@ -24,7 +24,7 @@ class MainPresenter: MainViewOutputProtocol {
 }
 
 extension MainPresenter: MainInteractorOutputProtocol {
-    func receiveFirstData() {
-        
+    func receiveFirstData(array: [Pokemon]) {
+        viewController.setValue(value: array)
     }
 }

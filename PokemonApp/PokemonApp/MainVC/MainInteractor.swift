@@ -7,6 +7,16 @@
 
 import Foundation
 
+class NewsTableViewCellViewModel {
+    let name: String
+    let url: String
+    
+    init(name: String, url: String) {
+        self.name = name
+        self.url = url
+    }
+}
+
 protocol MainInteractorInputProtocol {
     init(presenter: MainInteractorOutputProtocol)
     func provideFirstData()
@@ -14,7 +24,7 @@ protocol MainInteractorInputProtocol {
 
 //for presenter
 protocol MainInteractorOutputProtocol: AnyObject {
-    func receiveFirstData()
+    func receiveFirstData(array: [Pokemon])
 }
 
 class MainInteractor: MainInteractorInputProtocol {
@@ -25,25 +35,14 @@ class MainInteractor: MainInteractorInputProtocol {
         self.presenter = presenter
     }
 
-    func provideFirstData() {
-        guard let url = URL(string: "https://pokeapi.co/api/v2/pokemon") else { return }
-
-        let task = URLSession.shared.dataTask(with: url) { [weak self] data, _, error in
-            if let error = error {
-                print(error)
-            }
-
-            guard let data = data else { return }
-
-            do {
-                let res = try JSONDecoder().decode(Response.self, from: data)
-                print(res)
-                
-                self?.presenter.receiveFirstData()
-            } catch {
+    func provideFirstData() {        
+        Network.fetchArticles { [weak self] result in
+            switch result {
+            case.success(let array):
+                self?.presenter.receiveFirstData(array: array)
+            case.failure(let error):
                 print(error)
             }
         }
-        task.resume()
     }
 }
