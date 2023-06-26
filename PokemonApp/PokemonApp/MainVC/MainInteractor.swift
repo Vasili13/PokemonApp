@@ -7,15 +7,15 @@
 
 import Foundation
 
-class NewsTableViewCellViewModel {
-    let name: String
-    let url: String
-    
-    init(name: String, url: String) {
-        self.name = name
-        self.url = url
-    }
-}
+//class NewsTableViewCellViewModel {
+//    let name: String
+//    let url: String
+//    
+//    init(name: String, url: String) {
+//        self.name = name
+//        self.url = url
+//    }
+//}
 
 protocol MainInteractorInputProtocol {
     init(presenter: MainInteractorOutputProtocol)
@@ -25,11 +25,13 @@ protocol MainInteractorInputProtocol {
 //for presenter
 protocol MainInteractorOutputProtocol: AnyObject {
     func receiveFirstData(array: [Pokemon])
+//    func openSecondVC(secondData: SecondPokemon)
 }
 
 class MainInteractor: MainInteractorInputProtocol {
 
     unowned let presenter: MainInteractorOutputProtocol
+    private var firstData: Pokemon?
 
     required init(presenter: MainInteractorOutputProtocol) {
         self.presenter = presenter
@@ -45,4 +47,5 @@ class MainInteractor: MainInteractorInputProtocol {
             }
         }
     }
+
 }

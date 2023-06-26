@@ -15,6 +15,7 @@ protocol MainViewInputProtocol: AnyObject {
 protocol MainViewOutputProtocol {
     init(viewController: MainViewInputProtocol)
     func showInfo()
+    func openCV(pok: Pokemon)
 }
 
 class MainViewController: UIViewController {
@@ -54,12 +55,20 @@ extension MainViewController: UITableViewDelegate, UITableViewDataSource {
         cell.detailTextLabel?.text = array[indexPath.row].url
         return cell
     }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let pokemon = array[indexPath.row].self
+        print(pokemon)
+//        delegate?.didSelectRow1(data: pokemon)
+        presenter.openCV(pok: pokemon)
+        tableView.deselectRow(at: indexPath, animated: true)
+    }
 }
 
 extension MainViewController: MainViewInputProtocol {
+    
     func setValue(value: [Pokemon]) {
         array = value
-        print(value, "YES")
         DispatchQueue.main.async {
             self.pokemonTableView.reloadData()
         }

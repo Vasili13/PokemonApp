@@ -6,10 +6,12 @@
 //
 
 import Foundation
+import UIKit
 
 protocol MainRouterInputProtocol {
     init(viewController: MainViewController)
-    func openDescriptionVC()
+//    func openVC(with secondData: Pokemon)
+    func showNextViewController(data1: Pokemon)
 }
 
 class MainRouter: MainRouterInputProtocol {
@@ -20,7 +22,19 @@ class MainRouter: MainRouterInputProtocol {
         self.viewController = viewController
     }
     
-    func openDescriptionVC() {
-        let a = 1
+//    func openVC(with secondData: Pokemon) {
+//        viewController.performSegue(withIdentifier: "Show", sender: secondData)
+//    }
+    
+    func showNextViewController(data1: Pokemon) {
+        print(data1, "Data")
+        
+        guard let descrVc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(identifier: "DescriptionViewController") as? DescriptionViewController else { return }
+        
+        descrVc.data = data1
+        
+//        nextVC.data = data
+        viewController.navigationController?.pushViewController(descrVc, animated: true)
     }
+    
 }

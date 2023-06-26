@@ -7,23 +7,51 @@
 
 import UIKit
 
+protocol DesciptionViewInputProtocol: AnyObject {
+    func setValue(_ value: String)
+}
+
+protocol DesciptionViewOutputProtocol {
+    init(view: DesciptionViewInputProtocol)
+    func showData()
+}
+
 class DescriptionViewController: UIViewController {
 
+    @IBOutlet weak var nameLabel: UILabel!
+    
+    var presenter: DesciptionViewOutputProtocol!
+    
+    var data: Pokemon?
+    
+    private var configurator: DescriptionConfiguratorInputProtocol = DescriptionConfigurator()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+//        presenter.showData()
+//        guard let pok = pok else { return }
+//        configurator.configure(with: self, and: pok)
+//        print(data, "desjnsdfkvhkfsjhkfjshkj")
+//        nameLabel.text = data?.name
+        showsdfds()
+        
+        configurator.configure(with: self)
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+    func showsdfds() {
+        guard let data = data else { return }
+        print(data.name)
+        
+        nameLabel.text = data.name.capitalized
     }
-    */
+    
+    deinit {
+        print("deinit")
+    }
+}
 
+extension DescriptionViewController: DesciptionViewInputProtocol {
+    func setValue(_ value: String) {
+        nameLabel.text = value
+    }
 }

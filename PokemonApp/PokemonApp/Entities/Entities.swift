@@ -18,6 +18,11 @@ struct Pokemon: Codable {
     let url: String
 }
 
+struct SecondPokemon: Codable {
+    let name: String
+    let url: String
+}
+
 struct DetailPokemon: Codable {
     let id: Int
     let height: Int

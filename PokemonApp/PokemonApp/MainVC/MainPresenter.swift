@@ -21,9 +21,30 @@ class MainPresenter: MainViewOutputProtocol {
     func showInfo() {
         interactor.provideFirstData()
     }
+    
+    func openCV(pok: Pokemon) {
+//        router.openVC(with: pok)
+        print(pok, "pres")
+        router?.showNextViewController(data1: pok)
+    }
+//
+//    func didSelectRow(data: Pokemon) {
+//
+//    }
+
 }
 
+//extension MainPresenter: YourViewDelegate {
+//    func didSelectRow(data: Pokemon) {
+//        didSelectRow(data: data)
+//    }
+//    func didSelectRow1(data: Pokemon) {
+//        didSelectRow(data: data)
+//    }
+//}
+
 extension MainPresenter: MainInteractorOutputProtocol {
+    
     func receiveFirstData(array: [Pokemon]) {
         viewController.setValue(value: array)
     }
