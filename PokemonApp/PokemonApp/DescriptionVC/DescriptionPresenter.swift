@@ -18,13 +18,16 @@ class DescriptionPresenter: DesciptionViewOutputProtocol {
     
     func showData() {
 //        interactor.provideSecondData()
-        
+    }
+    
+    func handleStringValue(_ string: String) {
+        print(string, "String")
+        interactor.getURL(string: string)
     }
 }
 
 extension DescriptionPresenter: DesciptionInteractorOutputProtocol {
-    func receiveSecondData(array secondData: Pokemon) {
-        let data = secondData.name
-        view.setValue(data)
+    func receiveSecondData(array: DetailPokemon) {
+        view.setValue(array)
     }
 }

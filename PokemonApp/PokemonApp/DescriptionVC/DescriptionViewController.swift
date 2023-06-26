@@ -8,18 +8,21 @@
 import UIKit
 
 protocol DesciptionViewInputProtocol: AnyObject {
-    func setValue(_ value: String)
+    func setValue(_ value: DetailPokemon)
 }
 
 protocol DesciptionViewOutputProtocol {
     init(view: DesciptionViewInputProtocol)
     func showData()
+    func handleStringValue(_ string: String)
+//    func sendStringToInteractor()
 }
 
 class DescriptionViewController: UIViewController {
-
+    
     @IBOutlet weak var nameLabel: UILabel!
     
+    @IBOutlet weak var pokImageView: UIImageView!
     var presenter: DesciptionViewOutputProtocol!
     
     var data: Pokemon?
@@ -34,14 +37,14 @@ class DescriptionViewController: UIViewController {
 //        print(data, "desjnsdfkvhkfsjhkfjshkj")
 //        nameLabel.text = data?.name
         showsdfds()
-        
         configurator.configure(with: self)
+        presenter.handleStringValue(data?.url ?? "Str")
     }
     
     func showsdfds() {
         guard let data = data else { return }
-        print(data.name)
         
+        print(data.name)
         nameLabel.text = data.name.capitalized
     }
     
@@ -51,7 +54,20 @@ class DescriptionViewController: UIViewController {
 }
 
 extension DescriptionViewController: DesciptionViewInputProtocol {
-    func setValue(_ value: String) {
-        nameLabel.text = value
+    func setValue(_ value: DetailPokemon) {
+        nameLabel.text = value.id.description
+        
+        guard let url = value.sprites?.front_default else { return }
+        if let url = URL(string: url) {
+            let request = URLRequest(url: url)
+            let task = URLSession.shared.dataTask(with: request) { data, response, error in
+                guard let data = data, error == nil else { return }
+                DispatchQueue.main.async() {
+                    let image = UIImage(data: data)
+                    self.pokImageView.image = image
+                }
+            }
+            task.resume()
+        }
     }
 }

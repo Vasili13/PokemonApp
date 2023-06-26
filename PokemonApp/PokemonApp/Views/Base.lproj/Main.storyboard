@@ -117,6 +117,7 @@
                     </view>
                     <connections>
                         <outlet property="nameLabel" destination="B0H-nM-cQ0" id="RLV-TQ-9v5"/>
+                        <outlet property="pokImageView" destination="Ncb-WZ-c62" id="Pgm-k7-wLl"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="BqF-hW-yCC" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
