@@ -7,14 +7,15 @@
 
 import Foundation
 
+// MARK: - DescriptionConfiguratorInputProtocol
 protocol DescriptionConfiguratorInputProtocol {
     func configure(with viewController: DescriptionViewController)
 }
 
+// MARK: - DescriptionConfigurator
 class DescriptionConfigurator: DescriptionConfiguratorInputProtocol {
     
     func configure(with view: DescriptionViewController) {
-        
         let presenter = DescriptionPresenter(view: view)
         let interactor = DescriptionInteractor(presenter: presenter)
         view.presenter = presenter

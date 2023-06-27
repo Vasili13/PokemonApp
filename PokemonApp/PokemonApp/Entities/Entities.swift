@@ -18,11 +18,7 @@ struct Pokemon: Codable {
     let url: String
 }
 
-struct SecondPokemon: Codable {
-    let name: String
-    let url: String
-}
-
+// MARK: - DetailPokemon
 struct DetailPokemon: Codable {
     let id: Int
     let height: Int
@@ -32,15 +28,18 @@ struct DetailPokemon: Codable {
     let sprites: PokemonSprites?
 }
 
+// MARK: - PokemonSprites
 struct PokemonSprites: Codable {
     let front_default: String
 }
 
+// MARK: - TypeElement
 struct TypeElement: Codable {
     let slot: Int
     var type: Species
 }
 
+// MARK: - Species
 struct Species: Codable {
     var name: String
 }

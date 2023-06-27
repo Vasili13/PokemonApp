@@ -8,17 +8,18 @@
 import UIKit
 import SnapKit
 
+// MARK: - DesciptionViewInputProtocol
 protocol DesciptionViewInputProtocol: AnyObject {
     func setValue(_ value: DetailPokemon)
 }
 
+// MARK: - DesciptionViewOutputProtocol
 protocol DesciptionViewOutputProtocol {
     init(view: DesciptionViewInputProtocol)
-    func showData()
     func handleStringValue(_ string: String)
-//    func sendStringToInteractor()
 }
 
+// MARK: - DescriptionViewController
 class DescriptionViewController: UIViewController {
     
     lazy var pokemonNameLabel: UILabel = {
@@ -73,9 +74,6 @@ class DescriptionViewController: UIViewController {
         return lbl
     }()
     
-//    @IBOutlet weak var nameLabel: UILabel!
-    
-//    @IBOutlet weak var pokImageView: UIImageView!
     var presenter: DesciptionViewOutputProtocol!
     
     var data: Pokemon?
@@ -94,17 +92,12 @@ class DescriptionViewController: UIViewController {
         view.addSubview(receivedWeigthLabel)
         view.addSubview(receivedHeightLabel)
         
-//        presenter.showData()
-//        guard let pok = pok else { return }
-//        configurator.configure(with: self, and: pok)
-//        print(data, "desjnsdfkvhkfsjhkfjshkj")
-//        nameLabel.text = data?.name
-        showsdfds()
         configurator.configure(with: self)
-        presenter.handleStringValue(data?.url ?? "Str")
+        
+        //pass data to fetch details of all Pokemons
+        presenter.handleStringValue(data?.url ?? "Pokemon")
         
         updateViewConstraints()
-        
     }
     
     override func updateViewConstraints() {
@@ -151,35 +144,16 @@ class DescriptionViewController: UIViewController {
             make.right.equalToSuperview().inset(20)
         }
     }
-    
-    func showsdfds() {
-        guard let data = data else { return }
-        
-        print(data.name)
-//        nameLabel.text = data.name.capitalized
-    }
-    
-    deinit {
-        print("deinit")
-    }
 }
 
+// MARK: - extension DescriptionViewController
 extension DescriptionViewController: DesciptionViewInputProtocol {
     func setValue(_ value: DetailPokemon) {
-//        var b = ""
-//
-//        let typeName = value.types.map { res in
-//            b = res.type.name
-//        }
-        
         let typeName = value.types.map { $0.type.name }
-        
-//        nameLabel.text = value.id.description
         pokemonNameLabel.text = value.name.capitalized
         receivedTypeLabel.text = typeName.first?.capitalized
         receivedWeigthLabel.text = value.weight.description.capitalized
         receivedHeightLabel.text = value.height.description.capitalized
-        
         
         guard let url = value.sprites?.front_default else { return }
         if let url = URL(string: url) {
@@ -188,7 +162,6 @@ extension DescriptionViewController: DesciptionViewInputProtocol {
                 guard let data = data, error == nil else { return }
                 DispatchQueue.main.async() {
                     let image = UIImage(data: data)
-//                    self.pokImageView.image = image
                     self.pokemonFrontImageView.image = image
                 }
             }

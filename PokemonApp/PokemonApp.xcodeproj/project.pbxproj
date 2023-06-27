@@ -24,6 +24,7 @@
 		9E9C45542A44838C002B8B92 /* DescriptionConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E9C45532A44838C002B8B92 /* DescriptionConfigurator.swift */; };
 		9E9C45572A4486FF002B8B92 /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = 9E9C45562A4486FF002B8B92 /* SnapKit */; };
 		9E9C45FB2A4600CA002B8B92 /* Network.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E9C45FA2A4600CA002B8B92 /* Network.swift */; };
+		9E9C46022A4AF7B2002B8B92 /* MainTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E9C46012A4AF7B2002B8B92 /* MainTableViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -45,6 +46,7 @@
 		9E9C45512A44837A002B8B92 /* DescriptionInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DescriptionInteractor.swift; sourceTree = "<group>"; };
 		9E9C45532A44838C002B8B92 /* DescriptionConfigurator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DescriptionConfigurator.swift; sourceTree = "<group>"; };
 		9E9C45FA2A4600CA002B8B92 /* Network.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Network.swift; sourceTree = "<group>"; };
+		9E9C46012A4AF7B2002B8B92 /* MainTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTableViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -82,9 +84,8 @@
 				9E9C45202A446052002B8B92 /* MainVC */,
 				9E9C45212A446063002B8B92 /* DescriptionVC */,
 				9E9C451C2A4344C5002B8B92 /* Views */,
-				9E9C45152A4342EA002B8B92 /* Info.plist */,
-				9E9C45102A4342EA002B8B92 /* Assets.xcassets */,
 				9E9C451B2A43448C002B8B92 /* SupportFiles */,
+				9E9C45152A4342EA002B8B92 /* Info.plist */,
 			);
 			path = PokemonApp;
 			sourceTree = "<group>";
@@ -92,6 +93,7 @@
 		9E9C451B2A43448C002B8B92 /* SupportFiles */ = {
 			isa = PBXGroup;
 			children = (
+				9E9C45102A4342EA002B8B92 /* Assets.xcassets */,
 				9E9C45072A4342E8002B8B92 /* AppDelegate.swift */,
 				9E9C45092A4342E8002B8B92 /* SceneDelegate.swift */,
 			);
@@ -119,11 +121,11 @@
 		9E9C45202A446052002B8B92 /* MainVC */ = {
 			isa = PBXGroup;
 			children = (
-				9E9C450B2A4342E8002B8B92 /* MainViewController.swift */,
-				9E9C45422A4482EC002B8B92 /* MainPresenter.swift */,
-				9E9C45442A4482FC002B8B92 /* MainInteractor.swift */,
-				9E9C45482A448322002B8B92 /* MainConfigurator.swift */,
-				9E9C454A2A44832F002B8B92 /* MainRouter.swift */,
+				9E9C46032A4AFA11002B8B92 /* View */,
+				9E9C46042A4AFA46002B8B92 /* Presenter */,
+				9E9C46052A4AFA4F002B8B92 /* Interactor */,
+				9E9C46062A4AFA56002B8B92 /* Configurator */,
+				9E9C46072A4AFA5F002B8B92 /* Router */,
 			);
 			path = MainVC;
 			sourceTree = "<group>";
@@ -131,12 +133,85 @@
 		9E9C45212A446063002B8B92 /* DescriptionVC */ = {
 			isa = PBXGroup;
 			children = (
-				9E9C454C2A448348002B8B92 /* DescriptionViewController.swift */,
-				9E9C454F2A448365002B8B92 /* DescriptionPresenter.swift */,
-				9E9C45512A44837A002B8B92 /* DescriptionInteractor.swift */,
-				9E9C45532A44838C002B8B92 /* DescriptionConfigurator.swift */,
+				9E9C46082A4AFA8E002B8B92 /* View */,
+				9E9C46092A4AFA94002B8B92 /* Presenter */,
+				9E9C460A2A4AFA9D002B8B92 /* Interactor */,
+				9E9C460B2A4AFAA6002B8B92 /* Configurator */,
 			);
 			path = DescriptionVC;
+			sourceTree = "<group>";
+		};
+		9E9C46032A4AFA11002B8B92 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				9E9C450B2A4342E8002B8B92 /* MainViewController.swift */,
+				9E9C46012A4AF7B2002B8B92 /* MainTableViewCell.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		9E9C46042A4AFA46002B8B92 /* Presenter */ = {
+			isa = PBXGroup;
+			children = (
+				9E9C45422A4482EC002B8B92 /* MainPresenter.swift */,
+			);
+			path = Presenter;
+			sourceTree = "<group>";
+		};
+		9E9C46052A4AFA4F002B8B92 /* Interactor */ = {
+			isa = PBXGroup;
+			children = (
+				9E9C45442A4482FC002B8B92 /* MainInteractor.swift */,
+			);
+			path = Interactor;
+			sourceTree = "<group>";
+		};
+		9E9C46062A4AFA56002B8B92 /* Configurator */ = {
+			isa = PBXGroup;
+			children = (
+				9E9C45482A448322002B8B92 /* MainConfigurator.swift */,
+			);
+			path = Configurator;
+			sourceTree = "<group>";
+		};
+		9E9C46072A4AFA5F002B8B92 /* Router */ = {
+			isa = PBXGroup;
+			children = (
+				9E9C454A2A44832F002B8B92 /* MainRouter.swift */,
+			);
+			path = Router;
+			sourceTree = "<group>";
+		};
+		9E9C46082A4AFA8E002B8B92 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				9E9C454C2A448348002B8B92 /* DescriptionViewController.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		9E9C46092A4AFA94002B8B92 /* Presenter */ = {
+			isa = PBXGroup;
+			children = (
+				9E9C454F2A448365002B8B92 /* DescriptionPresenter.swift */,
+			);
+			path = Presenter;
+			sourceTree = "<group>";
+		};
+		9E9C460A2A4AFA9D002B8B92 /* Interactor */ = {
+			isa = PBXGroup;
+			children = (
+				9E9C45512A44837A002B8B92 /* DescriptionInteractor.swift */,
+			);
+			path = Interactor;
+			sourceTree = "<group>";
+		};
+		9E9C460B2A4AFAA6002B8B92 /* Configurator */ = {
+			isa = PBXGroup;
+			children = (
+				9E9C45532A44838C002B8B92 /* DescriptionConfigurator.swift */,
+			);
+			path = Configurator;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -226,6 +301,7 @@
 				9E9C451F2A445FFC002B8B92 /* Entities.swift in Sources */,
 				9E9C45542A44838C002B8B92 /* DescriptionConfigurator.swift in Sources */,
 				9E9C45492A448322002B8B92 /* MainConfigurator.swift in Sources */,
+				9E9C46022A4AF7B2002B8B92 /* MainTableViewCell.swift in Sources */,
 				9E9C454D2A448348002B8B92 /* DescriptionViewController.swift in Sources */,
 				9E9C450A2A4342E8002B8B92 /* SceneDelegate.swift in Sources */,
 				9E9C45452A4482FC002B8B92 /* MainInteractor.swift in Sources */,

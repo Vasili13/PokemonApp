@@ -7,27 +7,18 @@
 
 import Foundation
 
-//class NewsTableViewCellViewModel {
-//    let name: String
-//    let url: String
-//    
-//    init(name: String, url: String) {
-//        self.name = name
-//        self.url = url
-//    }
-//}
-
+// MARK: - MainInteractorInputProtocol
 protocol MainInteractorInputProtocol {
     init(presenter: MainInteractorOutputProtocol)
     func provideFirstData()
 }
 
-//for presenter
+// MARK: - MainInteractorOutputProtocol
 protocol MainInteractorOutputProtocol: AnyObject {
     func receiveFirstData(array: [Pokemon])
-//    func openSecondVC(secondData: SecondPokemon)
 }
 
+// MARK: - MainInteractor
 class MainInteractor: MainInteractorInputProtocol {
 
     unowned let presenter: MainInteractorOutputProtocol
@@ -37,8 +28,9 @@ class MainInteractor: MainInteractorInputProtocol {
         self.presenter = presenter
     }
 
+    //fetch data to tableView
     func provideFirstData() {        
-        Network.fetchArticles { [weak self] result in
+        Network.fetchGeneralInfo { [weak self] result in
             switch result {
             case.success(let array):
                 self?.presenter.receiveFirstData(array: array)
@@ -47,5 +39,4 @@ class MainInteractor: MainInteractorInputProtocol {
             }
         }
     }
-
 }

@@ -7,6 +7,7 @@
 
 import Foundation
 
+// MARK: - MainPresenter
 class MainPresenter: MainViewOutputProtocol {
     
     unowned let viewController: MainViewInputProtocol
@@ -18,33 +19,20 @@ class MainPresenter: MainViewOutputProtocol {
         self.viewController = viewController
     }
     
-    func showInfo() {
+    func provideFirstData() {
         interactor.provideFirstData()
     }
     
-    func openCV(pok: Pokemon) {
-//        router.openVC(with: pok)
-        print(pok, "pres")
-        router?.showNextViewController(data1: pok)
+    func openNextVC(pokemon: Pokemon) {
+        router?.showNextViewController(data: pokemon)
     }
-//
-//    func didSelectRow(data: Pokemon) {
-//
-//    }
 
 }
 
-//extension MainPresenter: YourViewDelegate {
-//    func didSelectRow(data: Pokemon) {
-//        didSelectRow(data: data)
-//    }
-//    func didSelectRow1(data: Pokemon) {
-//        didSelectRow(data: data)
-//    }
-//}
-
+// MARK: - extension MainInteractorOutputProtocol
 extension MainPresenter: MainInteractorOutputProtocol {
-    
+
+    //pass data to MainVC
     func receiveFirstData(array: [Pokemon]) {
         viewController.setValue(value: array)
     }

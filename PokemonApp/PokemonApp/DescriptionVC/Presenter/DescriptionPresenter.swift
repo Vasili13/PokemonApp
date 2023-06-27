@@ -7,6 +7,7 @@
 
 import Foundation
 
+// MARK: - DescriptionPresenter
 class DescriptionPresenter: DesciptionViewOutputProtocol {
     
     unowned let view: DesciptionViewInputProtocol
@@ -16,18 +17,14 @@ class DescriptionPresenter: DesciptionViewOutputProtocol {
         self.view = view
     }
     
-    func showData() {
-//        interactor.provideSecondData()
-    }
-    
     func handleStringValue(_ string: String) {
-        print(string, "String")
-        interactor.getURL(string: string)
+        interactor.getURL(stringURL: string)
     }
 }
 
+// MARK: - DescriptionPresenter Extension
 extension DescriptionPresenter: DesciptionInteractorOutputProtocol {
-    func receiveSecondData(array: DetailPokemon) {
-        view.setValue(array)
+    func receiveSecondData(arrayOfDetails: DetailPokemon) {
+        view.setValue(arrayOfDetails)
     }
 }
