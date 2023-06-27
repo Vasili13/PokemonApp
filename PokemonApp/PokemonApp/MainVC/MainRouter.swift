@@ -35,6 +35,7 @@ class MainRouter: MainRouterInputProtocol {
         
 //        nextVC.data = data
         viewController.navigationController?.pushViewController(descrVc, animated: true)
+//        viewController.present(descrVc, animated: true)
     }
     
 }

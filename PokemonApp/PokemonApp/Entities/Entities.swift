@@ -28,9 +28,20 @@ struct DetailPokemon: Codable {
     let height: Int
     let weight: Int
     let name: String
+    let types: [TypeElement]
     let sprites: PokemonSprites?
 }
 
 struct PokemonSprites: Codable {
     let front_default: String
 }
+
+struct TypeElement: Codable {
+    let slot: Int
+    var type: Species
+}
+
+struct Species: Codable {
+    var name: String
+}
+

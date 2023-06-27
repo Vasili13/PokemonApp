@@ -35,6 +35,14 @@ class MainViewController: UIViewController {
         
         configurator.configure(with: self)
         
+        
+        let imageView = UIImageView(frame: CGRect(x: 0, y: 0, width: 20, height: 20))
+        imageView.contentMode = .scaleAspectFit
+        let image = UIImage(named: "pokemonLogo")
+        imageView.image = image
+        navigationItem.titleView = imageView
+        
+        
         tryToDo()
     }
     

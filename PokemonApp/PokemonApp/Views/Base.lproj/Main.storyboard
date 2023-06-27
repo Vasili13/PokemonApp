@@ -11,6 +11,7 @@
         <!--Navigation Controller-->
         <scene sceneID="YKf-NK-bdx">
             <objects>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="9yC-QY-L5E" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
                 <navigationController id="Z8N-Oc-tNL" sceneMemberID="viewController">
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="z0O-UP-4Km">
                         <rect key="frame" x="0.0" y="59" width="393" height="44"/>
@@ -20,7 +21,6 @@
                         <segue destination="BYZ-38-t0r" kind="relationship" relationship="rootViewController" id="aMb-MS-cFj"/>
                     </connections>
                 </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="9yC-QY-L5E" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-697" y="4"/>
         </scene>
@@ -88,37 +88,9 @@
                     <view key="view" contentMode="scaleToFill" id="gYl-NR-7V3">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Ncb-WZ-c62">
-                                <rect key="frame" x="121" y="199" width="150" height="150"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="150" id="fcG-ct-3F2"/>
-                                    <constraint firstAttribute="height" constant="150" id="k1z-gF-iUm"/>
-                                </constraints>
-                            </imageView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="B0H-nM-cQ0">
-                                <rect key="frame" x="175" y="598" width="42" height="21"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                        </subviews>
                         <viewLayoutGuide key="safeArea" id="oEw-fA-pnb"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                        <constraints>
-                            <constraint firstItem="oEw-fA-pnb" firstAttribute="trailing" secondItem="Ncb-WZ-c62" secondAttribute="trailing" constant="122" id="G6d-F1-LId"/>
-                            <constraint firstItem="B0H-nM-cQ0" firstAttribute="leading" secondItem="oEw-fA-pnb" secondAttribute="leading" constant="175" id="IGc-7D-Zi0"/>
-                            <constraint firstItem="Ncb-WZ-c62" firstAttribute="top" secondItem="oEw-fA-pnb" secondAttribute="top" constant="140" id="SsW-yY-fTe"/>
-                            <constraint firstItem="Ncb-WZ-c62" firstAttribute="leading" secondItem="oEw-fA-pnb" secondAttribute="leading" constant="121" id="Yim-88-GkU"/>
-                            <constraint firstItem="Ncb-WZ-c62" firstAttribute="centerX" secondItem="B0H-nM-cQ0" secondAttribute="centerX" id="jZj-Yj-J9B"/>
-                            <constraint firstItem="oEw-fA-pnb" firstAttribute="trailing" secondItem="B0H-nM-cQ0" secondAttribute="trailing" constant="176" id="skL-TN-ncc"/>
-                            <constraint firstItem="oEw-fA-pnb" firstAttribute="bottom" secondItem="B0H-nM-cQ0" secondAttribute="bottom" constant="199" id="teG-i4-Z7K"/>
-                        </constraints>
                     </view>
-                    <connections>
-                        <outlet property="nameLabel" destination="B0H-nM-cQ0" id="RLV-TQ-9v5"/>
-                        <outlet property="pokImageView" destination="Ncb-WZ-c62" id="Pgm-k7-wLl"/>
-                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="BqF-hW-yCC" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
