@@ -35,7 +35,7 @@ class MainInteractor: MainInteractorInputProtocol {
             case.success(let array):
                 self?.presenter.receiveFirstData(array: array)
             case.failure(let error):
-                print(error)
+                let error = error
             }
         }
     }

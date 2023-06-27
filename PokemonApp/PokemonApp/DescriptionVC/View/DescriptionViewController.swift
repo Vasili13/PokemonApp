@@ -24,14 +24,15 @@ class DescriptionViewController: UIViewController {
     
     lazy var pokemonNameLabel: UILabel = {
         let lbl = UILabel()
-        lbl.font = .systemFont(ofSize: 17, weight: .bold)
+        lbl.font = .systemFont(ofSize: 25, weight: .bold)
         return lbl
     }()
     
     lazy var pokemonFrontImageView: UIImageView = {
         let image = UIImageView()
-        image.layer.cornerRadius = 6
+        image.layer.cornerRadius = 20
         image.layer.masksToBounds = true
+        image.layer.borderWidth = 2
         image.clipsToBounds = true
         image.backgroundColor = .secondarySystemBackground
         image.contentMode = .scaleAspectFill
@@ -40,37 +41,40 @@ class DescriptionViewController: UIViewController {
     
     lazy var pokemonTypeLabel: UILabel = {
         let lbl = UILabel()
+        lbl.font = .systemFont(ofSize: 20, weight: .bold)
         lbl.text = "Type:"
         return lbl
     }()
     
     lazy var pokemonWeightLabel: UILabel = {
         let lbl = UILabel()
+        lbl.font = .systemFont(ofSize: 20, weight: .bold)
         lbl.text = "Weight:"
         return lbl
     }()
     
     lazy var pokemonHeightLabel: UILabel = {
         let lbl = UILabel()
+        lbl.font = .systemFont(ofSize: 20, weight: .bold)
         lbl.text = "Height:"
         return lbl
     }()
     
     lazy var receivedTypeLabel: UILabel = {
         let lbl = UILabel()
-        lbl.font = .systemFont(ofSize: 20, weight: .bold)
+        lbl.font = .systemFont(ofSize: 20, weight: .medium)
         return lbl
     }()
     
     lazy var receivedHeightLabel: UILabel = {
         let lbl = UILabel()
-        lbl.font = .systemFont(ofSize: 20, weight: .bold)
+        lbl.font = .systemFont(ofSize: 20, weight: .medium)
         return lbl
     }()
     
     lazy var receivedWeigthLabel: UILabel = {
         let lbl = UILabel()
-        lbl.font = .systemFont(ofSize: 20, weight: .bold)
+        lbl.font = .systemFont(ofSize: 20, weight: .medium)
         return lbl
     }()
     

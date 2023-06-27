@@ -80,6 +80,7 @@ extension MainViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "MainTableViewCell", for: indexPath) as? MainTableViewCell else {fatalError()}
+        
         cell.pokemonTitleLbl.text = arrayOfPokemons[indexPath.row].name.capitalized
         
 // TODO: - Do it in Interactor

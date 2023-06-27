@@ -30,16 +30,18 @@ class Network {
     }
 
     func getPokemonInfo(url: String, completion: @escaping ((DetailPokemon) -> ())) {
-        guard let url = URL(string: url) else {
-            return
-        }
+        guard let url = URL(string: url) else { return }
 
-        URLSession.shared.dataTask(with: url) { data, _, _ in
+        URLSession.shared.dataTask(with: url) { data, _, error in
             guard let data = data else { return }
-            let pokemonInfo = try! JSONDecoder().decode(DetailPokemon.self, from: data)
-
-            DispatchQueue.main.async {
-                completion(pokemonInfo)
+            
+            do {
+                let pokemonInfo = try JSONDecoder().decode(DetailPokemon.self, from: data)
+                DispatchQueue.main.async {
+                    completion(pokemonInfo)
+                }
+            } catch(let error) {
+                let error = error
             }
         }.resume()
     }
