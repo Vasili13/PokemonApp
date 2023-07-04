@@ -13,7 +13,7 @@ protocol DescriptionConfiguratorInputProtocol {
 }
 
 // MARK: - DescriptionConfigurator
-class DescriptionConfigurator: DescriptionConfiguratorInputProtocol {
+final class DescriptionConfigurator: DescriptionConfiguratorInputProtocol {
     
     func configure(with view: DescriptionViewController) {
         let presenter = DescriptionPresenter(view: view)

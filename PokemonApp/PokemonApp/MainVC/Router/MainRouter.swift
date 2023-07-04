@@ -15,7 +15,7 @@ protocol MainRouterInputProtocol {
 }
 
 // MARK: - MainRouter
-class MainRouter: MainRouterInputProtocol {
+final class MainRouter: MainRouterInputProtocol {
 
     unowned let viewController: MainViewController
     

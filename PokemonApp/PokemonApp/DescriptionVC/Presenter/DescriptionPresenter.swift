@@ -8,17 +8,17 @@
 import Foundation
 
 // MARK: - DescriptionPresenter
-class DescriptionPresenter: DesciptionViewOutputProtocol {
+final class DescriptionPresenter: DesciptionViewOutputProtocol {
     
     unowned let view: DesciptionViewInputProtocol
-    var interactor: DesciptionInteractorInputProtocol!
+    var interactor: DesciptionInteractorInputProtocol?
     
     required init(view: DesciptionViewInputProtocol) {
         self.view = view
     }
     
     func handleStringValue(_ string: String) {
-        interactor.getURL(stringURL: string)
+        interactor?.getURL(stringURL: string)
     }
 }
 

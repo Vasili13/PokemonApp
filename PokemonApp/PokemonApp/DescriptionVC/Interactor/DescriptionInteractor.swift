@@ -18,7 +18,7 @@ protocol DesciptionInteractorOutputProtocol: AnyObject {
     func receiveSecondData(arrayOfDetails: DetailPokemon)
 }
 
-class DescriptionInteractor: DesciptionInteractorInputProtocol {
+final class DescriptionInteractor: DesciptionInteractorInputProtocol {
     
     unowned let presenter: DesciptionInteractorOutputProtocol
 

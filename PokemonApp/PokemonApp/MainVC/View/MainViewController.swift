@@ -11,6 +11,7 @@ import SnapKit
 // MARK: - MainViewInputProtocol
 protocol MainViewInputProtocol: AnyObject {
     func setValue(value: [Pokemon])
+    func showPokemonList(_ pokemonList1: [Pokemon])
 }
 
 // MARK: - MainViewOutputProtocol
@@ -18,22 +19,23 @@ protocol MainViewOutputProtocol {
     init(viewController: MainViewInputProtocol)
     func provideFirstData()
     func openNextVC(pokemon: Pokemon)
+    
+    func viewCreated()
+    func loadMorePokemon()
 }
 
 // MARK: - MainViewController
-class MainViewController: UIViewController {
+final class MainViewController: UIViewController {
     
-    lazy var pokemonTableView: UITableView = {
+    private let pokemonTableView: UITableView = {
         let table = UITableView(frame: .zero)
         table.register(MainTableViewCell.self, forCellReuseIdentifier: MainTableViewCell.key)
-        table.delegate = self
-        table.dataSource = self
         return table
     }()
     
-    private var arrayOfPokemons: [Pokemon] = []
+    private var pokemonList: [Pokemon] = []
 
-    var presenter: MainViewOutputProtocol!
+    var presenter: MainViewOutputProtocol?
     private let configurator: MainConfiguratorInputProtocol = MainConfigurator()
     
     override func viewDidLoad() {
@@ -43,13 +45,17 @@ class MainViewController: UIViewController {
         
         view.addSubview(pokemonTableView)
         
+        pokemonTableView.delegate = self
+        pokemonTableView.dataSource = self
+        
         configurateNavBar()
         provideFirstData()
+        presenter?.viewCreated()
         
         updateViewConstraints()
     }
     
-    func configurateNavBar() {
+    private func configurateNavBar() {
         let imageView = UIImageView(frame: CGRect(x: 0, y: 0, width: 20, height: 20))
         imageView.contentMode = .scaleAspectFit
         let image = UIImage(named: "pokemonLogo")
@@ -57,8 +63,8 @@ class MainViewController: UIViewController {
         navigationItem.titleView = imageView
     }
     
-    func provideFirstData() {
-        presenter.provideFirstData()
+    private func provideFirstData() {
+        presenter?.provideFirstData()
     }
     
     override func updateViewConstraints() {
@@ -71,20 +77,20 @@ class MainViewController: UIViewController {
 }
 
 // MARK: - TableView extension
-extension MainViewController: UITableViewDelegate, UITableViewDataSource {
+extension MainViewController: UITableViewDelegate, UITableViewDataSource, UIScrollViewDelegate {
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return arrayOfPokemons.count
+        return pokemonList.count
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "MainTableViewCell", for: indexPath) as? MainTableViewCell else {fatalError()}
         
-        cell.pokemonTitleLbl.text = arrayOfPokemons[indexPath.row].name.capitalized
+        cell.pokemonTitleLbl.text = pokemonList[indexPath.row].name.capitalized
         
 // TODO: - Do it in Interactor
-        Network().getPokemonInfo(url: arrayOfPokemons[indexPath.row].url) { result in
+        Network().getPokemonInfo(url: pokemonList[indexPath.row].url) { result in
             guard let urlStr = result.sprites?.front_default else { return }
             if let url = URL(string: urlStr) {
                 let request = URLRequest(url: url)
@@ -103,20 +109,35 @@ extension MainViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let pokemon = arrayOfPokemons[indexPath.row].self
-        presenter.openNextVC(pokemon: pokemon)
+        let pokemon = pokemonList[indexPath.row].self
+        presenter?.openNextVC(pokemon: pokemon)
         tableView.deselectRow(at: indexPath, animated: true)
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 150
     }
+    
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        let offsetY = scrollView.contentOffset.y
+        let contentHeight = scrollView.contentSize.height
+        
+        if offsetY > contentHeight - scrollView.frame.height {
+            presenter?.viewCreated()
+            pokemonTableView.reloadData()
+        }
+    }
 }
 
 // MARK: - extension MainViewInputProtocol
 extension MainViewController: MainViewInputProtocol {
+    func showPokemonList(_ pokemonList1: [Pokemon]) {
+        pokemonList = pokemonList1
+        pokemonTableView.reloadData()
+    }
+    
     func setValue(value: [Pokemon]) {
-        arrayOfPokemons = value
+        pokemonList = value
         DispatchQueue.main.async {
             self.pokemonTableView.reloadData()
         }

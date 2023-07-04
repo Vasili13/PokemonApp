@@ -11,7 +11,6 @@
         <!--Navigation Controller-->
         <scene sceneID="YKf-NK-bdx">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="9yC-QY-L5E" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
                 <navigationController id="Z8N-Oc-tNL" sceneMemberID="viewController">
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="z0O-UP-4Km">
                         <rect key="frame" x="0.0" y="59" width="393" height="44"/>
@@ -21,6 +20,7 @@
                         <segue destination="BYZ-38-t0r" kind="relationship" relationship="rootViewController" id="aMb-MS-cFj"/>
                     </connections>
                 </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="9yC-QY-L5E" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-697" y="4"/>
         </scene>
@@ -48,7 +48,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <viewLayoutGuide key="safeArea" id="oEw-fA-pnb"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     </view>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="BqF-hW-yCC" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>

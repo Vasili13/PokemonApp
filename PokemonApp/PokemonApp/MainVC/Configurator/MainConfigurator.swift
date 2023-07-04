@@ -13,7 +13,7 @@ protocol MainConfiguratorInputProtocol {
 }
 
 // MARK: - MainConfigurator
-class MainConfigurator: MainConfiguratorInputProtocol {
+final class MainConfigurator: MainConfiguratorInputProtocol {
     
     func configure(with viewController: MainViewController) {
         let presenter = MainPresenter(viewController: viewController)

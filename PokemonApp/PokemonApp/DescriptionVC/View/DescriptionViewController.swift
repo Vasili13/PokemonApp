@@ -20,15 +20,15 @@ protocol DesciptionViewOutputProtocol {
 }
 
 // MARK: - DescriptionViewController
-class DescriptionViewController: UIViewController {
+final class DescriptionViewController: UIViewController {
     
-    lazy var pokemonNameLabel: UILabel = {
+    private lazy var pokemonNameLabel: UILabel = {
         let lbl = UILabel()
         lbl.font = .systemFont(ofSize: 25, weight: .bold)
         return lbl
     }()
     
-    lazy var pokemonFrontImageView: UIImageView = {
+    private lazy var pokemonFrontImageView: UIImageView = {
         let image = UIImageView()
         image.layer.cornerRadius = 20
         image.layer.masksToBounds = true
@@ -39,46 +39,46 @@ class DescriptionViewController: UIViewController {
         return image
     }()
     
-    lazy var pokemonTypeLabel: UILabel = {
+    private lazy var pokemonTypeLabel: UILabel = {
         let lbl = UILabel()
         lbl.font = .systemFont(ofSize: 20, weight: .bold)
         lbl.text = "Type:"
         return lbl
     }()
     
-    lazy var pokemonWeightLabel: UILabel = {
+    private lazy var pokemonWeightLabel: UILabel = {
         let lbl = UILabel()
         lbl.font = .systemFont(ofSize: 20, weight: .bold)
         lbl.text = "Weight:"
         return lbl
     }()
     
-    lazy var pokemonHeightLabel: UILabel = {
+    private lazy var pokemonHeightLabel: UILabel = {
         let lbl = UILabel()
         lbl.font = .systemFont(ofSize: 20, weight: .bold)
         lbl.text = "Height:"
         return lbl
     }()
     
-    lazy var receivedTypeLabel: UILabel = {
+    private lazy var receivedTypeLabel: UILabel = {
         let lbl = UILabel()
         lbl.font = .systemFont(ofSize: 20, weight: .medium)
         return lbl
     }()
     
-    lazy var receivedHeightLabel: UILabel = {
+    private lazy var receivedHeightLabel: UILabel = {
         let lbl = UILabel()
         lbl.font = .systemFont(ofSize: 20, weight: .medium)
         return lbl
     }()
     
-    lazy var receivedWeigthLabel: UILabel = {
+    private lazy var receivedWeigthLabel: UILabel = {
         let lbl = UILabel()
         lbl.font = .systemFont(ofSize: 20, weight: .medium)
         return lbl
     }()
     
-    var presenter: DesciptionViewOutputProtocol!
+    var presenter: DesciptionViewOutputProtocol?
     
     var data: Pokemon?
     
@@ -99,7 +99,7 @@ class DescriptionViewController: UIViewController {
         configurator.configure(with: self)
         
         //pass data to fetch details of all Pokemons
-        presenter.handleStringValue(data?.url ?? "Pokemon")
+        presenter?.handleStringValue(data?.url ?? "Pokemon")
         
         updateViewConstraints()
     }

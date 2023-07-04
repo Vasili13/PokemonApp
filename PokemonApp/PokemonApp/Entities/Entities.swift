@@ -9,6 +9,7 @@ import Foundation
 
 // MARK: - Welcome
 struct Response: Codable {
+    let next: String
     let results: [Pokemon]
 }
 

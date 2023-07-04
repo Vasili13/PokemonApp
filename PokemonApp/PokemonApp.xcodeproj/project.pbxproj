@@ -25,6 +25,7 @@
 		9E9C45572A4486FF002B8B92 /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = 9E9C45562A4486FF002B8B92 /* SnapKit */; };
 		9E9C45FB2A4600CA002B8B92 /* Network.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E9C45FA2A4600CA002B8B92 /* Network.swift */; };
 		9E9C46022A4AF7B2002B8B92 /* MainTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E9C46012A4AF7B2002B8B92 /* MainTableViewCell.swift */; };
+		9E9C462D2A5441EF002B8B92 /* APIConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E9C462C2A5441EF002B8B92 /* APIConstants.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -47,6 +48,7 @@
 		9E9C45532A44838C002B8B92 /* DescriptionConfigurator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DescriptionConfigurator.swift; sourceTree = "<group>"; };
 		9E9C45FA2A4600CA002B8B92 /* Network.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Network.swift; sourceTree = "<group>"; };
 		9E9C46012A4AF7B2002B8B92 /* MainTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTableViewCell.swift; sourceTree = "<group>"; };
+		9E9C462C2A5441EF002B8B92 /* APIConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIConstants.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -83,9 +85,8 @@
 				9E9C451D2A445FE6002B8B92 /* Entities */,
 				9E9C45202A446052002B8B92 /* MainVC */,
 				9E9C45212A446063002B8B92 /* DescriptionVC */,
-				9E9C451C2A4344C5002B8B92 /* Views */,
+				9E9C451C2A4344C5002B8B92 /* Storyboard */,
 				9E9C451B2A43448C002B8B92 /* SupportFiles */,
-				9E9C45152A4342EA002B8B92 /* Info.plist */,
 			);
 			path = PokemonApp;
 			sourceTree = "<group>";
@@ -96,17 +97,18 @@
 				9E9C45102A4342EA002B8B92 /* Assets.xcassets */,
 				9E9C45072A4342E8002B8B92 /* AppDelegate.swift */,
 				9E9C45092A4342E8002B8B92 /* SceneDelegate.swift */,
+				9E9C45152A4342EA002B8B92 /* Info.plist */,
 			);
 			path = SupportFiles;
 			sourceTree = "<group>";
 		};
-		9E9C451C2A4344C5002B8B92 /* Views */ = {
+		9E9C451C2A4344C5002B8B92 /* Storyboard */ = {
 			isa = PBXGroup;
 			children = (
 				9E9C450D2A4342E8002B8B92 /* Main.storyboard */,
 				9E9C45122A4342EA002B8B92 /* LaunchScreen.storyboard */,
 			);
-			path = Views;
+			path = Storyboard;
 			sourceTree = "<group>";
 		};
 		9E9C451D2A445FE6002B8B92 /* Entities */ = {
@@ -114,6 +116,7 @@
 			children = (
 				9E9C451E2A445FFC002B8B92 /* Entities.swift */,
 				9E9C45FA2A4600CA002B8B92 /* Network.swift */,
+				9E9C462C2A5441EF002B8B92 /* APIConstants.swift */,
 			);
 			path = Entities;
 			sourceTree = "<group>";
@@ -302,6 +305,7 @@
 				9E9C45542A44838C002B8B92 /* DescriptionConfigurator.swift in Sources */,
 				9E9C45492A448322002B8B92 /* MainConfigurator.swift in Sources */,
 				9E9C46022A4AF7B2002B8B92 /* MainTableViewCell.swift in Sources */,
+				9E9C462D2A5441EF002B8B92 /* APIConstants.swift in Sources */,
 				9E9C454D2A448348002B8B92 /* DescriptionViewController.swift in Sources */,
 				9E9C450A2A4342E8002B8B92 /* SceneDelegate.swift in Sources */,
 				9E9C45452A4482FC002B8B92 /* MainInteractor.swift in Sources */,
@@ -452,7 +456,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = PokemonApp/Info.plist;
+				INFOPLIST_FILE = PokemonApp/SupportFiles/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
@@ -482,7 +486,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = PokemonApp/Info.plist;
+				INFOPLIST_FILE = PokemonApp/SupportFiles/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;

@@ -8,25 +8,36 @@
 import Foundation
 
 // MARK: - MainPresenter
-class MainPresenter: MainViewOutputProtocol {
+final class MainPresenter: MainViewOutputProtocol {
     
     unowned let viewController: MainViewInputProtocol
     
-    var interactor: MainInteractorInputProtocol!
-    var router: MainRouterInputProtocol!
+    var interactor: MainInteractorInputProtocol?
+    var router: MainRouterInputProtocol?
     
     required init(viewController: MainViewInputProtocol) {
         self.viewController = viewController
     }
     
     func provideFirstData() {
-        interactor.provideFirstData()
+        interactor?.provideFirstData()
     }
     
     func openNextVC(pokemon: Pokemon) {
         router?.showNextViewController(data: pokemon)
     }
+    
+    func viewCreated() {
+            interactor?.fetchPokemonList()
+        }
+        
+        func loadMorePokemon() {
+            interactor?.fetchPokemonList()
+        }
+        
+        
 
+    
 }
 
 // MARK: - extension MainInteractorOutputProtocol
@@ -35,5 +46,9 @@ extension MainPresenter: MainInteractorOutputProtocol {
     //pass data to MainVC
     func receiveFirstData(array: [Pokemon]) {
         viewController.setValue(value: array)
+    }
+    
+    func pokemonListFetched(_ pokemonList: [Pokemon]) {
+        viewController.showPokemonList(pokemonList)
     }
 }
