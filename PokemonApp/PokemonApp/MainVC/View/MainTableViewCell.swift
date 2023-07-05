@@ -34,28 +34,26 @@ class MainTableViewCell: UITableViewCell {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         contentView.addSubview(pokemonTitleLbl)
         contentView.addSubview(pokemonImageView)
-        updateConstraints()
+        makeConstraints()
     }
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
     
-    override func updateConstraints() {
-        super.updateConstraints()
-        
-        pokemonTitleLbl.snp.makeConstraints { make in
-            make.centerY.equalToSuperview()
-            make.left.equalTo(16)
-            make.height.equalTo(70)
-            make.width.equalTo(contentView.frame.size.width - 170)
+    private func makeConstraints() {
+        pokemonTitleLbl.snp.makeConstraints {
+            $0.centerY.equalToSuperview()
+            $0.left.equalTo(16)
+            $0.height.equalTo(70)
+            $0.width.equalTo(contentView.frame.size.width - 170)
         }
         
-        pokemonImageView.snp.makeConstraints { make in
-            make.right.equalToSuperview().inset(16)
-            make.centerY.equalToSuperview()
-            make.width.equalTo(145)
-            make.height.equalTo(130)
+        pokemonImageView.snp.makeConstraints {
+            $0.right.equalToSuperview().inset(16)
+            $0.centerY.equalToSuperview()
+            $0.width.equalTo(145)
+            $0.height.equalTo(130)
         }
     }
     

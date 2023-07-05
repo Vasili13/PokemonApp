@@ -100,52 +100,50 @@ final class DescriptionViewController: UIViewController {
         
         //pass data to fetch details of all Pokemons
         presenter?.handleStringValue(data?.url ?? "Pokemon")
-        
+        makeConstraints()
         updateViewConstraints()
     }
     
-    override func updateViewConstraints() {
-        super.updateViewConstraints()
-        
-        pokemonNameLabel.snp.makeConstraints { make in
-            make.top.equalTo(100)
-            make.centerX.equalToSuperview()
+    private func makeConstraints() {
+        pokemonNameLabel.snp.makeConstraints {
+            $0.top.equalTo(100)
+            $0.centerX.equalToSuperview()
         }
         
-        pokemonFrontImageView.snp.makeConstraints { make in
-            make.top.equalTo(pokemonNameLabel).offset(40)
-            make.centerX.equalToSuperview()
-            make.height.width.equalTo(200)
+        pokemonFrontImageView.snp.makeConstraints {
+            $0.top.equalTo(pokemonNameLabel).offset(40)
+            $0.centerX.equalToSuperview()
+            $0.height.width.equalTo(200)
         }
         
-        pokemonTypeLabel.snp.makeConstraints { make in
-            make.top.equalTo(pokemonFrontImageView.snp.bottom).offset(50)
-            make.left.equalToSuperview().offset(20)
+        pokemonTypeLabel.snp.makeConstraints {
+            $0.top.equalTo(pokemonFrontImageView.snp.bottom).offset(50)
+            $0.left.equalToSuperview().offset(20)
         }
 
-        pokemonWeightLabel.snp.makeConstraints { make in
-            make.top.equalTo(pokemonTypeLabel).offset(50)
-            make.left.equalToSuperview().offset(20)
+        pokemonWeightLabel.snp.makeConstraints {
+            $0.top.equalTo(pokemonTypeLabel).offset(50)
+            $0.left.equalToSuperview().offset(20)
         }
 
-        pokemonHeightLabel.snp.makeConstraints { make in
-            make.top.equalTo(pokemonWeightLabel).offset(50)
-            make.left.equalToSuperview().offset(20)
+        pokemonHeightLabel.snp.makeConstraints {
+            $0.top.equalTo(pokemonWeightLabel).offset(50)
+            $0.left.equalToSuperview().offset(20)
         }
 
-        receivedTypeLabel.snp.makeConstraints { make in
-            make.top.equalTo(pokemonFrontImageView.snp.bottom).offset(50)
-            make.right.equalToSuperview().inset(20)
+        receivedTypeLabel.snp.makeConstraints {
+            $0.top.equalTo(pokemonFrontImageView.snp.bottom).offset(50)
+            $0.right.equalToSuperview().inset(20)
         }
 
-        receivedWeigthLabel.snp.makeConstraints { make in
-            make.top.equalTo(receivedTypeLabel).offset(50)
-            make.right.equalToSuperview().inset(20)
+        receivedWeigthLabel.snp.makeConstraints {
+            $0.top.equalTo(receivedTypeLabel).offset(50)
+            $0.right.equalToSuperview().inset(20)
         }
 
-        receivedHeightLabel.snp.makeConstraints { make in
-            make.top.equalTo(receivedWeigthLabel).offset(50)
-            make.right.equalToSuperview().inset(20)
+        receivedHeightLabel.snp.makeConstraints {
+            $0.top.equalTo(receivedWeigthLabel).offset(50)
+            $0.right.equalToSuperview().inset(20)
         }
     }
 }

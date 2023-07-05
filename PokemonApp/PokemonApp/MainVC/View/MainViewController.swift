@@ -51,8 +51,7 @@ final class MainViewController: UIViewController {
         configurateNavBar()
         provideFirstData()
         presenter?.viewCreated()
-        
-        updateViewConstraints()
+        makeConstraints()
     }
     
     private func configurateNavBar() {
@@ -67,11 +66,9 @@ final class MainViewController: UIViewController {
         presenter?.provideFirstData()
     }
     
-    override func updateViewConstraints() {
-        super.updateViewConstraints()
-        
-        pokemonTableView.snp.makeConstraints { make in
-            make.height.width.equalToSuperview()
+    private func makeConstraints() {
+        pokemonTableView.snp.makeConstraints {
+            $0.height.width.equalToSuperview()
         }
     }
 }
