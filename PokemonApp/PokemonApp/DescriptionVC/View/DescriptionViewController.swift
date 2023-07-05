@@ -86,21 +86,14 @@ final class DescriptionViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        view.addSubview(pokemonNameLabel)
-        view.addSubview(pokemonFrontImageView)
-        view.addSubview(pokemonTypeLabel)
-        view.addSubview(pokemonWeightLabel)
-        view.addSubview(pokemonHeightLabel)
-        view.addSubview(receivedTypeLabel)
-        view.addSubview(receivedWeigthLabel)
-        view.addSubview(receivedHeightLabel)
+        let viewsList = [pokemonNameLabel, pokemonFrontImageView, pokemonTypeLabel, pokemonWeightLabel, pokemonHeightLabel, pokemonTypeLabel, receivedTypeLabel, receivedWeigthLabel, receivedHeightLabel]
+        view.addViewsToMainView(viewsList)
         
         configurator.configure(with: self)
         
         //pass data to fetch details of all Pokemons
         presenter?.handleStringValue(data?.url ?? "Pokemon")
         makeConstraints()
-        updateViewConstraints()
     }
     
     private func makeConstraints() {
