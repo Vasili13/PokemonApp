@@ -57,6 +57,11 @@ class MainTableViewCell: UITableViewCell {
         }
     }
     
+    func configure(data: Data) {
+        let image = UIImage(data: data)
+        pokemonImageView.image = image
+    }
+    
     override func prepareForReuse() {
         super.prepareForReuse()
         pokemonTitleLbl.text = nil

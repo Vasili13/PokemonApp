@@ -10,16 +10,14 @@ import SnapKit
 
 // MARK: - MainViewInputProtocol
 protocol MainViewInputProtocol: AnyObject {
-    func setValue(value: [Pokemon])
     func showPokemonList(_ pokemonList1: [Pokemon])
 }
 
 // MARK: - MainViewOutputProtocol
 protocol MainViewOutputProtocol {
     init(viewController: MainViewInputProtocol)
-    func provideFirstData()
     func openNextVC(pokemon: Pokemon)
-    
+    func provideImageURL(_ url: String)
     func viewCreated()
     func loadMorePokemon()
 }
@@ -49,9 +47,21 @@ final class MainViewController: UIViewController {
         pokemonTableView.dataSource = self
         
         configurateNavBar()
-        provideFirstData()
         presenter?.viewCreated()
         makeConstraints()
+        
+        DispatchQueue.main.async {
+            self.pokemonTableView.reloadData()
+        }
+    }
+    
+    private func createSpinnerFooter() -> UIView {
+        let footerView = UIView(frame: CGRect(x: 0, y: 0, width: view.frame.width, height: 100))
+        let spinner = UIActivityIndicatorView()
+        spinner.center = footerView.center
+        footerView.addSubview(spinner)
+        spinner.startAnimating()
+        return footerView
     }
     
     private func configurateNavBar() {
@@ -60,10 +70,6 @@ final class MainViewController: UIViewController {
         let image = UIImage(named: "pokemonLogo")
         imageView.image = image
         navigationItem.titleView = imageView
-    }
-    
-    private func provideFirstData() {
-        presenter?.provideFirstData()
     }
     
     private func makeConstraints() {
@@ -83,25 +89,26 @@ extension MainViewController: UITableViewDelegate, UITableViewDataSource, UIScro
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "MainTableViewCell", for: indexPath) as? MainTableViewCell else {fatalError()}
-        
         cell.pokemonTitleLbl.text = pokemonList[indexPath.row].name.capitalized
         
-// TODO: - Do it in Interactor
+        //unfortunately I missed this and did not have time to finish
         Network().getPokemonInfo(url: pokemonList[indexPath.row].url) { result in
-            guard let urlStr = result.sprites?.front_default else { return }
-            if let url = URL(string: urlStr) {
+            guard let urlString = result.sprites?.front_default else { return }
+            if let url = URL(string: urlString) {
                 let request = URLRequest(url: url)
-                let task = URLSession.shared.dataTask(with: request) { data, response, error in
-                    guard let data = data, error == nil else { return }
-                    DispatchQueue.main.async() {
+                let task = URLSession.shared.dataTask(with: request) { data, _, _ in
+                    guard let data = data else { return }
+                    DispatchQueue.main.async {
                         let image = UIImage(data: data)
                         cell.pokemonImageView.image = image
                     }
+                    
                 }
                 task.resume()
             }
         }
         
+        presenter?.provideImageURL(pokemonList[indexPath.row].url)
         return cell
     }
     
@@ -119,8 +126,10 @@ extension MainViewController: UITableViewDelegate, UITableViewDataSource, UIScro
         let offsetY = scrollView.contentOffset.y
         let contentHeight = scrollView.contentSize.height
         
+        self.pokemonTableView.tableFooterView = createSpinnerFooter()
         if offsetY > contentHeight - scrollView.frame.height {
             presenter?.viewCreated()
+            self.pokemonTableView.tableFooterView = nil
             pokemonTableView.reloadData()
         }
     }
@@ -131,12 +140,5 @@ extension MainViewController: MainViewInputProtocol {
     func showPokemonList(_ pokemonList1: [Pokemon]) {
         pokemonList = pokemonList1
         pokemonTableView.reloadData()
-    }
-    
-    func setValue(value: [Pokemon]) {
-        pokemonList = value
-        DispatchQueue.main.async {
-            self.pokemonTableView.reloadData()
-        }
     }
 }

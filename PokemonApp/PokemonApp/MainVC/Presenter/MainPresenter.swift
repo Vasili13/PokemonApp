@@ -19,35 +19,25 @@ final class MainPresenter: MainViewOutputProtocol {
         self.viewController = viewController
     }
     
-    func provideFirstData() {
-        interactor?.provideFirstData()
-    }
-    
     func openNextVC(pokemon: Pokemon) {
         router?.showNextViewController(data: pokemon)
     }
     
-    func viewCreated() {
-            interactor?.fetchPokemonList()
-        }
-        
-        func loadMorePokemon() {
-            interactor?.fetchPokemonList()
-        }
-        
-        
-
+    func provideImageURL(_ url: String) {
+        interactor?.getImageURL(url)
+    }
     
+    func viewCreated() {
+        interactor?.fetchPokemonList()
+    }
+        
+    func loadMorePokemon() {
+        interactor?.fetchPokemonList()
+    }
 }
 
 // MARK: - extension MainInteractorOutputProtocol
 extension MainPresenter: MainInteractorOutputProtocol {
-
-    //pass data to MainVC
-    func receiveFirstData(array: [Pokemon]) {
-        viewController.setValue(value: array)
-    }
-    
     func pokemonListFetched(_ pokemonList: [Pokemon]) {
         viewController.showPokemonList(pokemonList)
     }

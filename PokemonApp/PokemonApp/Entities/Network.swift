@@ -11,7 +11,7 @@ import Foundation
 class Network {
     
     //fetch url and name of a pokemon
-    static func fetchGeneralInfo(completion: @escaping (Result<[Pokemon], Error>) -> ()) {
+    static func fetchGeneralInfo(completion: @escaping (Result<DetailPokemon, Error>) -> ()) {
         guard let url = URL(string: "https://pokeapi.co/api/v2/pokemon") else { return }
 
         let task = URLSession.shared.dataTask(with: url) { data, _, error in
@@ -19,8 +19,8 @@ class Network {
                 completion(.failure(error))
             } else if let data = data {
                 do {
-                    let result = try JSONDecoder().decode(Response.self, from: data)
-                    completion(.success(result.results))
+                    let result = try JSONDecoder().decode(DetailPokemon.self, from: data)
+                    completion(.success(result))
                 } catch {
                     completion(.failure(error))
                 }
