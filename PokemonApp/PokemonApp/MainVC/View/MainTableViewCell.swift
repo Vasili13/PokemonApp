@@ -16,7 +16,7 @@ class MainTableViewCell: UITableViewCell {
     lazy var pokemonTitleLbl: UILabel = {
         let lbl = UILabel()
         lbl.numberOfLines = 0
-        lbl.font = .systemFont(ofSize: 25, weight: .bold)
+        lbl.font = .systemFont(ofSize: Constants.General.size, weight: .bold)
         return lbl
     }()
     

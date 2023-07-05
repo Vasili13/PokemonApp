@@ -7,8 +7,23 @@
 
 import Foundation
 
-final class APIConstants {
-    static let serverPath = "https://pokeapi.co/api/v2/"
-    static let pokemonPath = serverPath + "pokemon/"
-    static let pokemonPathLimit = pokemonPath + "?limit=20&offset=20"
+protocol NetworkRouter {
+    var serverPath: String { get }
+    var pokemonPath: String { get }
+    var pokemonPathLimit: String { get }
+}
+
+final class APIConstants: NetworkRouter {
+    
+    var serverPath: String {
+        return "https://pokeapi.co/api/v2/"
+    }
+    
+    var pokemonPath: String {
+        return serverPath + "pokemon/"
+    }
+    
+    var pokemonPathLimit: String {
+        return pokemonPath + "?limit=20&offset=20"
+    }
 }
