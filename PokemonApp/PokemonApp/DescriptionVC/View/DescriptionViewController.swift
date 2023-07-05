@@ -24,15 +24,14 @@ final class DescriptionViewController: UIViewController {
     
     private lazy var pokemonNameLabel: UILabel = {
         let lbl = UILabel()
-        lbl.font = .systemFont(ofSize: 25, weight: .bold)
+        lbl.font = .systemFont(ofSize: Constants.Fonts.largerFontSize, weight: .bold)
         return lbl
     }()
     
     private lazy var pokemonFrontImageView: UIImageView = {
         let image = UIImageView()
-        image.layer.cornerRadius = 20
+        image.layer.cornerRadius = Constants.ImageView.largeCornerRadius
         image.layer.masksToBounds = true
-        image.layer.borderWidth = 2
         image.clipsToBounds = true
         image.backgroundColor = .secondarySystemBackground
         image.contentMode = .scaleAspectFill
@@ -41,40 +40,40 @@ final class DescriptionViewController: UIViewController {
     
     private lazy var pokemonTypeLabel: UILabel = {
         let lbl = UILabel()
-        lbl.font = .systemFont(ofSize: 20, weight: .bold)
+        lbl.font = .systemFont(ofSize: Constants.Fonts.smallerFontSize, weight: .bold)
         lbl.text = "Type:"
         return lbl
     }()
     
     private lazy var pokemonWeightLabel: UILabel = {
         let lbl = UILabel()
-        lbl.font = .systemFont(ofSize: 20, weight: .bold)
+        lbl.font = .systemFont(ofSize: Constants.Fonts.smallerFontSize, weight: .bold)
         lbl.text = "Weight:"
         return lbl
     }()
     
     private lazy var pokemonHeightLabel: UILabel = {
         let lbl = UILabel()
-        lbl.font = .systemFont(ofSize: 20, weight: .bold)
+        lbl.font = .systemFont(ofSize: Constants.Fonts.smallerFontSize, weight: .bold)
         lbl.text = "Height:"
         return lbl
     }()
     
     private lazy var receivedTypeLabel: UILabel = {
         let lbl = UILabel()
-        lbl.font = .systemFont(ofSize: 20, weight: .medium)
+        lbl.font = .systemFont(ofSize: Constants.Fonts.smallerFontSize, weight: .medium)
         return lbl
     }()
     
     private lazy var receivedHeightLabel: UILabel = {
         let lbl = UILabel()
-        lbl.font = .systemFont(ofSize: 20, weight: .medium)
+        lbl.font = .systemFont(ofSize: Constants.Fonts.smallerFontSize, weight: .medium)
         return lbl
     }()
     
     private lazy var receivedWeigthLabel: UILabel = {
         let lbl = UILabel()
-        lbl.font = .systemFont(ofSize: 20, weight: .medium)
+        lbl.font = .systemFont(ofSize: Constants.Fonts.smallerFontSize, weight: .medium)
         return lbl
     }()
     
@@ -106,44 +105,44 @@ final class DescriptionViewController: UIViewController {
     
     private func makeConstraints() {
         pokemonNameLabel.snp.makeConstraints {
-            $0.top.equalTo(100)
+            $0.top.equalTo(Constants.DistanceToTheTop.largestTopMargin)
             $0.centerX.equalToSuperview()
         }
         
         pokemonFrontImageView.snp.makeConstraints {
-            $0.top.equalTo(pokemonNameLabel).offset(40)
+            $0.top.equalTo(pokemonNameLabel).offset(Constants.DistanceToTheTop.commonTopMargin)
             $0.centerX.equalToSuperview()
-            $0.height.width.equalTo(200)
+            $0.height.width.equalTo(Constants.ImageView.largeImageHeightAndWidth)
         }
         
         pokemonTypeLabel.snp.makeConstraints {
-            $0.top.equalTo(pokemonFrontImageView.snp.bottom).offset(50)
-            $0.left.equalToSuperview().offset(20)
+            $0.top.equalTo(pokemonFrontImageView.snp.bottom).offset(Constants.DistanceToTheTop.commonTopMargin)
+            $0.left.equalToSuperview().offset(Constants.SideIndent.commonIndent)
         }
 
         pokemonWeightLabel.snp.makeConstraints {
-            $0.top.equalTo(pokemonTypeLabel).offset(50)
-            $0.left.equalToSuperview().offset(20)
+            $0.top.equalTo(pokemonTypeLabel).offset(Constants.DistanceToTheTop.commonTopMargin)
+            $0.left.equalToSuperview().offset(Constants.SideIndent.commonIndent)
         }
 
         pokemonHeightLabel.snp.makeConstraints {
-            $0.top.equalTo(pokemonWeightLabel).offset(50)
-            $0.left.equalToSuperview().offset(20)
+            $0.top.equalTo(pokemonWeightLabel).offset(Constants.DistanceToTheTop.commonTopMargin)
+            $0.left.equalToSuperview().offset(Constants.SideIndent.commonIndent)
         }
 
         receivedTypeLabel.snp.makeConstraints {
-            $0.top.equalTo(pokemonFrontImageView.snp.bottom).offset(50)
-            $0.right.equalToSuperview().inset(20)
+            $0.top.equalTo(pokemonFrontImageView.snp.bottom).offset(Constants.DistanceToTheTop.commonTopMargin)
+            $0.right.equalToSuperview().inset(Constants.SideIndent.commonIndent)
         }
 
         receivedWeigthLabel.snp.makeConstraints {
-            $0.top.equalTo(receivedTypeLabel).offset(50)
-            $0.right.equalToSuperview().inset(20)
+            $0.top.equalTo(receivedTypeLabel).offset(Constants.DistanceToTheTop.commonTopMargin)
+            $0.right.equalToSuperview().inset(Constants.SideIndent.commonIndent)
         }
 
         receivedHeightLabel.snp.makeConstraints {
-            $0.top.equalTo(receivedWeigthLabel).offset(50)
-            $0.right.equalToSuperview().inset(20)
+            $0.top.equalTo(receivedWeigthLabel).offset(Constants.DistanceToTheTop.commonTopMargin)
+            $0.right.equalToSuperview().inset(Constants.SideIndent.commonIndent)
         }
     }
 }

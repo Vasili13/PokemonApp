@@ -16,13 +16,13 @@ class MainTableViewCell: UITableViewCell {
     lazy var pokemonTitleLbl: UILabel = {
         let lbl = UILabel()
         lbl.numberOfLines = 0
-        lbl.font = .systemFont(ofSize: Constants.General.size, weight: .bold)
+        lbl.font = .systemFont(ofSize: Constants.Fonts.largerFontSize, weight: .bold)
         return lbl
     }()
     
     lazy var pokemonImageView: UIImageView = {
         let imageView = UIImageView()
-        imageView.layer.cornerRadius = 6
+        imageView.layer.cornerRadius = Constants.ImageView.commonCornerRadius
         imageView.layer.masksToBounds = true
         imageView.clipsToBounds = true
         imageView.backgroundColor = .secondarySystemBackground
@@ -44,16 +44,16 @@ class MainTableViewCell: UITableViewCell {
     private func makeConstraints() {
         pokemonTitleLbl.snp.makeConstraints {
             $0.centerY.equalToSuperview()
-            $0.left.equalTo(16)
-            $0.height.equalTo(70)
-            $0.width.equalTo(contentView.frame.size.width - 170)
+            $0.left.equalTo(Constants.SideIndent.commonIndent)
+            $0.height.equalTo(Constants.TextLabel.heightOfTVLabel)
+            $0.width.equalTo(Constants.TextLabel.widthOfTVLabel)
         }
         
         pokemonImageView.snp.makeConstraints {
-            $0.right.equalToSuperview().inset(16)
+            $0.right.equalToSuperview().inset(Constants.SideIndent.commonIndent)
             $0.centerY.equalToSuperview()
-            $0.width.equalTo(145)
-            $0.height.equalTo(130)
+            $0.width.equalTo(Constants.ImageView.widthOfTVImage)
+            $0.height.equalTo(Constants.ImageView.heightOfTVImage)
         }
     }
     
