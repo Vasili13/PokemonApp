@@ -23,10 +23,6 @@ final class MainPresenter: MainViewOutputProtocol {
         router?.showNextViewController(data: pokemon)
     }
     
-    func provideImageURL(_ url: String) {
-        interactor?.getImageURL(url)
-    }
-    
     func viewCreated() {
         interactor?.fetchPokemonList()
     }
@@ -38,9 +34,6 @@ final class MainPresenter: MainViewOutputProtocol {
 
 // MARK: - extension MainInteractorOutputProtocol
 extension MainPresenter: MainInteractorOutputProtocol {
-    func getDetails(pokemon: [DetailPokemon]) {
-        viewController.showDetailPokemon(detailPokemon: pokemon)
-    }
     
     func pokemonListFetched(_ pokemonList: [Pokemon]) {
         viewController.showPokemonList(pokemonList)

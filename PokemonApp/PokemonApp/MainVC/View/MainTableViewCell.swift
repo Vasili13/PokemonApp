@@ -5,12 +5,12 @@
 //  Created by Василий Вырвич on 27.06.23.
 //
 
-import UIKit
 import SnapKit
+import UIKit
 
 // MARK: - MainTableViewCell
-class MainTableViewCell: UITableViewCell {
 
+class MainTableViewCell: UITableViewCell {
     static let key = "MainTableViewCell"
 
     lazy var pokemonTitleLbl: UILabel = {
@@ -37,6 +37,7 @@ class MainTableViewCell: UITableViewCell {
         makeConstraints()
     }
     
+    @available(*, unavailable)
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
@@ -58,12 +59,21 @@ class MainTableViewCell: UITableViewCell {
     }
     
     func configure(pokemonUrl: String, pokemonName: String) {
-        
         pokemonTitleLbl.text = pokemonName.capitalized
         
         Network().getPokemonInfo(url: pokemonUrl) { result in
             guard let urlString = result.sprites?.front_default else { return }
+            
             if let url = URL(string: urlString) {
+                ImageCache.shared.loadImage(fromURL: url) { image in
+                    DispatchQueue.main.async {
+                        if let image = image {
+                            self.pokemonImageView.image = image
+                        } else {
+                            print("ERROR")
+                        }
+                    }
+                }
                 let request = URLRequest(url: url)
                 let task = URLSession.shared.dataTask(with: request) { data, _, _ in
                     guard let data = data else { return }

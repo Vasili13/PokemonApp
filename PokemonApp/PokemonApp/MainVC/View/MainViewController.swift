@@ -7,18 +7,17 @@
 
 import UIKit
 import SnapKit
+import CoreData
 
 // MARK: - MainViewInputProtocol
 protocol MainViewInputProtocol: AnyObject {
     func showPokemonList(_ pokemonList1: [Pokemon])
-    func showDetailPokemon(detailPokemon: [DetailPokemon])
 }
 
 // MARK: - MainViewOutputProtocol
 protocol MainViewOutputProtocol {
     init(viewController: MainViewInputProtocol)
     func openNextVC(pokemon: Pokemon)
-    func provideImageURL(_ url: String)
     func viewCreated()
     func loadMorePokemon()
 }
@@ -34,7 +33,7 @@ final class MainViewController: UIViewController {
     
     private var pokemonList: [Pokemon] = []
     
-    private var detailedPokemonList: [DetailPokemon] = []
+    private var detailedPokemonList: [DBPokemon] = []
 
     var presenter: MainViewOutputProtocol?
     private let configurator: MainConfiguratorInputProtocol = MainConfigurator()
@@ -52,6 +51,8 @@ final class MainViewController: UIViewController {
         configurateNavBar()
         presenter?.viewCreated()
         makeConstraints()
+        
+        detailedPokemonList = CoreDataHelper.shared.loadPokemons()
         
         DispatchQueue.main.async {
             self.pokemonTableView.reloadData()
@@ -86,22 +87,20 @@ final class MainViewController: UIViewController {
 extension MainViewController: UITableViewDelegate, UITableViewDataSource, UIScrollViewDelegate {
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return pokemonList.count
+//        return pokemonList.count
+        return detailedPokemonList.count
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "MainTableViewCell", for: indexPath) as? MainTableViewCell else {fatalError()}
-
-        cell.configure(pokemonUrl: self.pokemonList[indexPath.row].url, pokemonName: self.pokemonList[indexPath.row].name)
-        
-        presenter?.provideImageURL(pokemonList[indexPath.row].url)
+//        cell.configure(pokemonUrl: self.pokemonList[indexPath.row].url, pokemonName: self.pokemonList[indexPath.row].name)
+        cell.configure(pokemonUrl: self.detailedPokemonList[indexPath.row].url ?? "", pokemonName: self.detailedPokemonList[indexPath.row].name ?? "")
         return cell
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let pokemon = pokemonList[indexPath.row].self
-        presenter?.openNextVC(pokemon: pokemon)
+//        let pokemon = pokemonList[indexPath.row].self
+//        presenter?.openNextVC(pokemon: pokemon)
         tableView.deselectRow(at: indexPath, animated: true)
     }
     
@@ -124,15 +123,6 @@ extension MainViewController: UITableViewDelegate, UITableViewDataSource, UIScro
 
 // MARK: - extension MainViewInputProtocol
 extension MainViewController: MainViewInputProtocol {
-    func showDetailPokemon(detailPokemon: [DetailPokemon]) {
-        print(detailPokemon)
-        detailedPokemonList = detailPokemon
-        DispatchQueue.main.async {
-            self.pokemonTableView.reloadData()
-        }
-        
-    }
-    
     func showPokemonList(_ pokemonList1: [Pokemon]) {
         pokemonList = pokemonList1
         pokemonTableView.reloadData()
