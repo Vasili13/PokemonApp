@@ -57,9 +57,24 @@ class MainTableViewCell: UITableViewCell {
         }
     }
     
-    func configure(data: Data) {
-        let image = UIImage(data: data)
-        pokemonImageView.image = image
+    func configure(pokemonUrl: String, pokemonName: String) {
+        
+        pokemonTitleLbl.text = pokemonName.capitalized
+        
+        Network().getPokemonInfo(url: pokemonUrl) { result in
+            guard let urlString = result.sprites?.front_default else { return }
+            if let url = URL(string: urlString) {
+                let request = URLRequest(url: url)
+                let task = URLSession.shared.dataTask(with: request) { data, _, _ in
+                    guard let data = data else { return }
+                    DispatchQueue.main.async {
+                        let image = UIImage(data: data)
+                        self.pokemonImageView.image = image
+                    }
+                }
+                task.resume()
+            }
+        }
     }
     
     override func prepareForReuse() {

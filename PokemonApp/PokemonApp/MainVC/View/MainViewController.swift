@@ -11,6 +11,7 @@ import SnapKit
 // MARK: - MainViewInputProtocol
 protocol MainViewInputProtocol: AnyObject {
     func showPokemonList(_ pokemonList1: [Pokemon])
+    func showDetailPokemon(detailPokemon: [DetailPokemon])
 }
 
 // MARK: - MainViewOutputProtocol
@@ -32,6 +33,8 @@ final class MainViewController: UIViewController {
     }()
     
     private var pokemonList: [Pokemon] = []
+    
+    private var detailedPokemonList: [DetailPokemon] = []
 
     var presenter: MainViewOutputProtocol?
     private let configurator: MainConfiguratorInputProtocol = MainConfigurator()
@@ -89,24 +92,8 @@ extension MainViewController: UITableViewDelegate, UITableViewDataSource, UIScro
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "MainTableViewCell", for: indexPath) as? MainTableViewCell else {fatalError()}
-        cell.pokemonTitleLbl.text = pokemonList[indexPath.row].name.capitalized
-        
-        //unfortunately I missed this and did not have time to finish
-        Network().getPokemonInfo(url: pokemonList[indexPath.row].url) { result in
-            guard let urlString = result.sprites?.front_default else { return }
-            if let url = URL(string: urlString) {
-                let request = URLRequest(url: url)
-                let task = URLSession.shared.dataTask(with: request) { data, _, _ in
-                    guard let data = data else { return }
-                    DispatchQueue.main.async {
-                        let image = UIImage(data: data)
-                        cell.pokemonImageView.image = image
-                    }
-                    
-                }
-                task.resume()
-            }
-        }
+
+        cell.configure(pokemonUrl: self.pokemonList[indexPath.row].url, pokemonName: self.pokemonList[indexPath.row].name)
         
         presenter?.provideImageURL(pokemonList[indexPath.row].url)
         return cell
@@ -137,6 +124,15 @@ extension MainViewController: UITableViewDelegate, UITableViewDataSource, UIScro
 
 // MARK: - extension MainViewInputProtocol
 extension MainViewController: MainViewInputProtocol {
+    func showDetailPokemon(detailPokemon: [DetailPokemon]) {
+        print(detailPokemon)
+        detailedPokemonList = detailPokemon
+        DispatchQueue.main.async {
+            self.pokemonTableView.reloadData()
+        }
+        
+    }
+    
     func showPokemonList(_ pokemonList1: [Pokemon]) {
         pokemonList = pokemonList1
         pokemonTableView.reloadData()

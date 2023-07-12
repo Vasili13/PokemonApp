@@ -38,6 +38,10 @@ final class MainPresenter: MainViewOutputProtocol {
 
 // MARK: - extension MainInteractorOutputProtocol
 extension MainPresenter: MainInteractorOutputProtocol {
+    func getDetails(pokemon: [DetailPokemon]) {
+        viewController.showDetailPokemon(detailPokemon: pokemon)
+    }
+    
     func pokemonListFetched(_ pokemonList: [Pokemon]) {
         viewController.showPokemonList(pokemonList)
     }

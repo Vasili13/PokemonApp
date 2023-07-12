@@ -17,6 +17,7 @@ protocol MainInteractorInputProtocol {
 // MARK: - MainInteractorOutputProtocol
 protocol MainInteractorOutputProtocol: AnyObject {
     func pokemonListFetched(_ pokemonList: [Pokemon])
+    func getDetails(pokemon: [DetailPokemon])
 }
 
 // MARK: - MainInteractor
@@ -26,6 +27,8 @@ final class MainInteractor: MainInteractorInputProtocol {
     private var firstData: Pokemon?
     
     private var pokemonList: [Pokemon] = []
+    
+    private var detailPokemonList: [DetailPokemon] = []
     
     private var nextPageURL: String?
     private var isFetching = false
@@ -66,6 +69,26 @@ final class MainInteractor: MainInteractorInputProtocol {
 
                 do {
                     let response = try JSONDecoder().decode(Response.self, from: data)
+                    
+                    let result = response.results.compactMap { pok in
+                        pok.url
+                    }
+                    
+                    for url in result {
+                        guard let url = URL(string: url) else  { return }
+
+                        URLSession.shared.dataTask(with: url) { data, response, error in
+                            guard let data = data else { return }
+                            let response = try! JSONDecoder().decode(DetailPokemon.self, from: data)
+                            
+                            self?.detailPokemonList.append(response)
+
+                            self?.presenter.getDetails(pokemon: self?.detailPokemonList ?? [])
+                        }.resume()
+                    }
+                    
+                    
+                    
                     self?.pokemonList += response.results
                     self?.nextPageURL = response.next
                     DispatchQueue.main.async {

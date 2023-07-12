@@ -28,6 +28,7 @@
 		9E9C46022A4AF7B2002B8B92 /* MainTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E9C46012A4AF7B2002B8B92 /* MainTableViewCell.swift */; };
 		9E9C462D2A5441EF002B8B92 /* APIConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E9C462C2A5441EF002B8B92 /* APIConstants.swift */; };
 		9E9C46312A545E69002B8B92 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E9C46302A545E69002B8B92 /* Constants.swift */; };
+		9EAF005E2A5EAFAD0072BB47 /* DBPokemon.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 9EAF005C2A5EAFAD0072BB47 /* DBPokemon.xcdatamodeld */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -53,6 +54,7 @@
 		9E9C46012A4AF7B2002B8B92 /* MainTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTableViewCell.swift; sourceTree = "<group>"; };
 		9E9C462C2A5441EF002B8B92 /* APIConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIConstants.swift; sourceTree = "<group>"; };
 		9E9C46302A545E69002B8B92 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		9EAF005D2A5EAFAD0072BB47 /* DBPokemon.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = DBPokemon.xcdatamodel; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -130,6 +132,7 @@
 				9E9C451E2A445FFC002B8B92 /* Entities.swift */,
 				9E9C45FA2A4600CA002B8B92 /* Network.swift */,
 				9E9C462C2A5441EF002B8B92 /* APIConstants.swift */,
+				9EAF005C2A5EAFAD0072BB47 /* DBPokemon.xcdatamodeld */,
 			);
 			path = Entities;
 			sourceTree = "<group>";
@@ -317,6 +320,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				9E9C45FB2A4600CA002B8B92 /* Network.swift in Sources */,
+				9EAF005E2A5EAFAD0072BB47 /* DBPokemon.xcdatamodeld in Sources */,
 				9E9C45522A44837A002B8B92 /* DescriptionInteractor.swift in Sources */,
 				9E9C45432A4482EC002B8B92 /* MainPresenter.swift in Sources */,
 				9E9C46312A545E69002B8B92 /* Constants.swift in Sources */,
@@ -575,6 +579,19 @@
 			productName = SnapKit;
 		};
 /* End XCSwiftPackageProductDependency section */
+
+/* Begin XCVersionGroup section */
+		9EAF005C2A5EAFAD0072BB47 /* DBPokemon.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				9EAF005D2A5EAFAD0072BB47 /* DBPokemon.xcdatamodel */,
+			);
+			currentVersion = 9EAF005D2A5EAFAD0072BB47 /* DBPokemon.xcdatamodel */;
+			path = DBPokemon.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = 9E9C44FC2A4342E8002B8B92 /* Project object */;
 }
