@@ -23,6 +23,10 @@ final class MainPresenter: MainViewOutputProtocol {
         router?.showNextViewController(data: pokemon)
     }
     
+    func openNextVCWithDB(pokemon: DBPokemon) {
+        router?.showNextViewControllerDB(data: pokemon)
+    }
+    
     func viewCreated() {
         interactor?.fetchPokemonList()
     }

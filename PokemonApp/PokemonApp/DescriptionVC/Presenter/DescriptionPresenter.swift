@@ -20,6 +20,10 @@ final class DescriptionPresenter: DesciptionViewOutputProtocol {
     func handleStringValue(_ string: String) {
         interactor?.getURL(stringURL: string)
     }
+    
+    func handleStringValueFromDB(_ string: String) {
+        interactor?.getUrlFromDB(url: string)
+    }
 }
 
 // MARK: - DescriptionPresenter Extension

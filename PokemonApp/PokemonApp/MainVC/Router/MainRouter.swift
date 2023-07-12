@@ -12,6 +12,7 @@ import UIKit
 protocol MainRouterInputProtocol {
     init(viewController: MainViewController)
     func showNextViewController(data: Pokemon)
+    func showNextViewControllerDB(data: DBPokemon)
 }
 
 // MARK: - MainRouter
@@ -28,6 +29,12 @@ final class MainRouter: MainRouterInputProtocol {
         guard let descriptionVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(identifier: "DescriptionViewController") as? DescriptionViewController else { return }
         descriptionVC.data = data
         viewController.navigationController?.pushViewController(descriptionVC, animated: true)
+    }
+    
+    func showNextViewControllerDB(data: DBPokemon) {
+//        guard let descriptionVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(identifier: "DescriptionViewController") as? DescriptionViewController else { return }
+//        descriptionVC.dataDB = data
+//        viewController.navigationController?.pushViewController(descriptionVC, animated: true)
     }
     
 }

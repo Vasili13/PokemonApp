@@ -18,6 +18,7 @@ protocol MainViewInputProtocol: AnyObject {
 protocol MainViewOutputProtocol {
     init(viewController: MainViewInputProtocol)
     func openNextVC(pokemon: Pokemon)
+    func openNextVCWithDB(pokemon: DBPokemon)
     func viewCreated()
     func loadMorePokemon()
 }
@@ -87,20 +88,22 @@ final class MainViewController: UIViewController {
 extension MainViewController: UITableViewDelegate, UITableViewDataSource, UIScrollViewDelegate {
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-//        return pokemonList.count
-        return detailedPokemonList.count
+        return pokemonList.count
+//        return detailedPokemonList.count
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "MainTableViewCell", for: indexPath) as? MainTableViewCell else {fatalError()}
-//        cell.configure(pokemonUrl: self.pokemonList[indexPath.row].url, pokemonName: self.pokemonList[indexPath.row].name)
-        cell.configure(pokemonUrl: self.detailedPokemonList[indexPath.row].url ?? "", pokemonName: self.detailedPokemonList[indexPath.row].name ?? "")
+       cell.configure(pokemonUrl: self.pokemonList[indexPath.row].url, pokemonName: self.pokemonList[indexPath.row].name)
+//        cell.configure(pokemonUrl: self.detailedPokemonList[indexPath.row].url ?? "", pokemonName: self.detailedPokemonList[indexPath.row].name ?? "")
         return cell
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-//        let pokemon = pokemonList[indexPath.row].self
-//        presenter?.openNextVC(pokemon: pokemon)
+        let pokemonDB = detailedPokemonList[indexPath.row].self
+        let pokemon = pokemonList[indexPath.row].self
+        presenter?.openNextVCWithDB(pokemon: pokemonDB)
+        presenter?.openNextVC(pokemon: pokemon)
         tableView.deselectRow(at: indexPath, animated: true)
     }
     

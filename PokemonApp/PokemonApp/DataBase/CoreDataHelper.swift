@@ -36,8 +36,6 @@ class CoreDataHelper {
             pokemon.name = names[index]
             pokemon.url = urls[index]
         }
-        
-        print(names)
         saveContext()
     }
 
@@ -67,7 +65,7 @@ class CoreDataHelper {
     func loadPokemons() -> [DBPokemon] {
             let context = persistentContainer.viewContext
             let fetchRequest: NSFetchRequest<DBPokemon> = DBPokemon.fetchRequest()
-            // Выполнение запроса
+
             do {
                 let pokemons = try context.fetch(fetchRequest)
                 return pokemons

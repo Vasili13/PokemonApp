@@ -60,8 +60,6 @@ final class MainInteractor: MainInteractorInputProtocol {
                 self?.pokemonList += response.results
                 self?.nextPageURL = response.next
 
-                
-
                 response.results.forEach { result in
                     self?.names.append(result.name)
                     self?.urls.append(result.url)
@@ -72,7 +70,6 @@ final class MainInteractor: MainInteractorInputProtocol {
                 DispatchQueue.main.async {
                     self?.presenter.pokemonListFetched(self?.pokemonList ?? [])
                 }
-
             } catch {
                 print("Error decoding pokemon list:", error.localizedDescription)
             }

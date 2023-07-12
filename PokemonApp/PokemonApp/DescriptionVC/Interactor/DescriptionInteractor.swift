@@ -11,6 +11,7 @@ import Foundation
 protocol DesciptionInteractorInputProtocol {
     init(presenter: DesciptionInteractorOutputProtocol)
     func getURL(stringURL: String)
+    func getUrlFromDB(url: String)
 }
 
 // MARK: -
@@ -29,6 +30,12 @@ final class DescriptionInteractor: DesciptionInteractorInputProtocol {
     //get URL of pokemon ID and pass back results of DetailPokemon
     func getURL(stringURL: String) {
         Network().getPokemonInfo(url: stringURL) { result in
+            self.presenter.receiveSecondData(arrayOfDetails: result)
+        }
+    }
+    
+    func getUrlFromDB(url: String) {
+        Network().getPokemonInfo(url: url) { result in
             self.presenter.receiveSecondData(arrayOfDetails: result)
         }
     }

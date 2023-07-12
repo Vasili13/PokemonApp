@@ -17,6 +17,7 @@ protocol DesciptionViewInputProtocol: AnyObject {
 protocol DesciptionViewOutputProtocol {
     init(view: DesciptionViewInputProtocol)
     func handleStringValue(_ string: String)
+    func handleStringValueFromDB(_ string: String)
 }
 
 // MARK: - DescriptionViewController
@@ -80,6 +81,7 @@ final class DescriptionViewController: UIViewController {
     var presenter: DesciptionViewOutputProtocol?
     
     var data: Pokemon?
+    var dataDB: DBPokemon?
     
     private var configurator: DescriptionConfiguratorInputProtocol = DescriptionConfigurator()
     
@@ -93,6 +95,7 @@ final class DescriptionViewController: UIViewController {
         
         //pass data to fetch details of all Pokemons
         presenter?.handleStringValue(data?.url ?? "Pokemon")
+        presenter?.handleStringValueFromDB(dataDB?.url ?? "Pokemon")
         makeConstraints()
     }
     
@@ -151,6 +154,16 @@ extension DescriptionViewController: DesciptionViewInputProtocol {
         
         guard let url = value.sprites?.front_default else { return }
         if let url = URL(string: url) {
+            ImageCache.shared.loadImage(fromURL: url) { image in
+                DispatchQueue.main.async {
+                    if let image = image {
+                        self.pokemonFrontImageView.image = image
+                    } else {
+                        print("ERROR")
+                    }
+                }
+            }
+            
             let request = URLRequest(url: url)
             let task = URLSession.shared.dataTask(with: request) { data, response, error in
                 guard let data = data, error == nil else { return }
